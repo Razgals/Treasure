@@ -52,7 +52,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const resultDiv = document.createElement('div');
         resultDiv.classList.add('search-result');
         resultDiv.innerHTML = `<span class="npc-name">${item.person}</span>: ${item.location}`;
-        if (resultDiv.textContent.length > 50) resultDiv.classList.add('long-text');
+        if (resultDiv.textContent.length > 50) {
+          resultDiv.classList.add('long-text');
+        }
         searchResultsList.appendChild(resultDiv);
       }
     });
@@ -64,7 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const resultDiv = document.createElement('div');
         resultDiv.classList.add('search-result');
         resultDiv.innerHTML = `<span class="anagram-text">${item.anagram}</span> - <span class="npc-name">${item.npc}</span>: ${item.location}`;
-        if (resultDiv.textContent.length > 50) resultDiv.classList.add('long-text');
+        if (resultDiv.textContent.length > 50) {
+          resultDiv.classList.add('long-text');
+        }
         searchResultsList.appendChild(resultDiv);
       }
     });
@@ -76,7 +80,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const resultDiv = document.createElement('div');
         resultDiv.classList.add('search-result');
         resultDiv.innerHTML = `${item.problem}: <span class="challenge-answer">${item.answer}</span>`;
-        if (resultDiv.textContent.length > 50) resultDiv.classList.add('long-text');
+        if (resultDiv.textContent.length > 50) {
+          resultDiv.classList.add('long-text');
+        }
         searchResultsList.appendChild(resultDiv);
       }
     });
@@ -88,7 +94,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const resultDiv = document.createElement('div');
         resultDiv.classList.add('search-result');
         resultDiv.innerHTML = `${item.riddle}<br><span class="answer-label">Answer:</span> <span class="answer-text">${item.answer}</span>`;
-        if (resultDiv.textContent.length > 50) resultDiv.classList.add('long-text');
+        if (resultDiv.textContent.length > 50) {
+          resultDiv.classList.add('long-text');
+        }
         searchResultsList.appendChild(resultDiv);
       }
     });
@@ -101,7 +109,9 @@ document.addEventListener('DOMContentLoaded', function() {
       const resultDiv = document.createElement('div');
       resultDiv.classList.add('search-result');
       resultDiv.textContent = `Maps: ${mapsImg.alt}`;
-      if (resultDiv.textContent.length > 50) resultDiv.classList.add('long-text');
+      if (resultDiv.textContent.length > 50) {
+        resultDiv.classList.add('long-text');
+      }
       searchResultsList.appendChild(resultDiv);
     }
 
@@ -112,7 +122,9 @@ document.addEventListener('DOMContentLoaded', function() {
         const resultDiv = document.createElement('div');
         resultDiv.classList.add('search-result');
         resultDiv.innerHTML = `<span class="emote-label">Emotes:</span> ${item.emotes}<br><span class="location-label">Location:</span> ${item.location}<br><span class="acquire-label">Acquire Items:</span> ${item.acquireItems}`;
-        if (resultDiv.textContent.length > 50) resultDiv.classList.add('long-text');
+        if (resultDiv.textContent.length > 50) {
+          resultDiv.classList.add('long-text');
+        }
         searchResultsList.appendChild(resultDiv);
       }
     });
@@ -168,7 +180,9 @@ document.addEventListener('DOMContentLoaded', function() {
   speakToData.forEach(item => {
     const itemDiv = document.createElement('div');
     itemDiv.innerHTML = `<span class="npc-name">${item.person}</span>: ${item.location}`;
-    if (itemDiv.textContent.length > 50) itemDiv.classList.add('long-text');
+    if (itemDiv.textContent.length > 50) {
+      itemDiv.classList.add('long-text');
+    }
     speakToList.appendChild(itemDiv);
   });
 
@@ -202,7 +216,9 @@ document.addEventListener('DOMContentLoaded', function() {
   anagramsData.forEach(item => {
     const itemDiv = document.createElement('div');
     itemDiv.innerHTML = `<span class="anagram-text">${item.anagram}</span> - <span class="npc-name">${item.npc}</span>: ${item.location}`;
-    if (itemDiv.textContent.length > 50) itemDiv.classList.add('long-text');
+    if (itemDiv.textContent.length > 50) {
+      itemDiv.classList.add('long-text');
+    }
     anagramsList.appendChild(itemDiv);
   });
 
@@ -228,7 +244,9 @@ document.addEventListener('DOMContentLoaded', function() {
   challengesData.forEach(item => {
     const itemDiv = document.createElement('div');
     itemDiv.innerHTML = `${item.problem}: <span class="challenge-answer">${item.answer}</span>`;
-    if (itemDiv.textContent.length > 50) itemDiv.classList.add('long-text');
+    if (itemDiv.textContent.length > 50) {
+      itemDiv.classList.add('long-text');
+    }
     challengesList.appendChild(itemDiv);
   });
 
@@ -580,7 +598,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const itemDiv = document.createElement('div');
     itemDiv.classList.add('emote-outfit-item');
     itemDiv.innerHTML = `<span class="emote-label">Emotes:</span> ${item.emotes}<br><span class="location-label">Location:</span> ${item.location}<br><span class="acquire-label">Acquire Items:</span> ${item.acquireItems}`;
-    if (itemDiv.textContent.length > 50) itemDiv.classList.add('long-text');
+    if (itemDiv.textContent.length > 50) {
+      itemDiv.classList.add('long-text');
+    }
     emoteOutfitList.appendChild(itemDiv);
   });
 
