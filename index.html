@@ -59,7 +59,7 @@
       flex-shrink: 0;
     }
 
-    #sidebar button {
+    #sidebar button, #sidebar .search-section {
       margin-bottom: 5px;
       padding: 8px 10px;
       width: 100%;
@@ -73,6 +73,26 @@
       white-space: nowrap;
       text-align: left;
       box-sizing: border-box;
+    }
+
+    #sidebar .search-section {
+      cursor: default; /* Prevent pointer cursor since it's not a clickable button */
+      padding: 0; /* Remove padding to fit the input properly */
+    }
+
+    #search-bar {
+      width: 100%;
+      padding: 8px 10px;
+      font-family: 'MedievalSharp', serif;
+      font-size: calc(12px + 0.2vw);
+      background: transparent; /* Transparent to show button.jpg background */
+      border: none;
+      color: #ccc; /* Lighter color for typed text */
+      box-sizing: border-box;
+    }
+
+    #search-bar::placeholder {
+      color: rgba(255, 255, 255, 0.7);
     }
 
     #content {
@@ -208,30 +228,8 @@
       font-weight: bold;
     }
 
-    #search .search-bar-container {
-      width: 90%;
-      max-width: 400px;
-      margin-bottom: 10px;
-      margin-left: 0;
-      margin-right: auto;
-    }
-
-    #search-bar {
-      width: 100%;
-      padding: 8px 10px;
-      font-family: 'MedievalSharp', serif;
-      font-size: calc(12px + 0.2vw);
-      background-color: rgba(255, 255, 255, 0.8);
-      border: 1px solid #8B4513;
-      color: #777; /* Lighter color for typed text */
-      box-sizing: border-box;
-    }
-
-    #search-bar::placeholder {
-      color: #666; /* Slightly darker placeholder for contrast */
-    }
-
     .search-result {
+      display: none;
       width: 90%;
       max-width: 400px;
       border: 1px solid #8B4513;
@@ -243,8 +241,8 @@
       font-size: calc(12px + 0.2vw);
     }
 
-    .search-result.long-text {
-      font-size: calc(10px + 0.2vw);
+    .search-result.active {
+      display: block;
     }
   </style>
 </head>
@@ -252,7 +250,9 @@
   <div id="header">Ye Olde Guide to Buried Riches</div>
   <div id="main-content">
     <div id="sidebar">
-      <button data-section="search">Search</button>
+      <div class="search-section">
+        <input type="text" id="search-bar" placeholder="Search (excludes Sliding Puzzles)">
+      </div>
       <button data-section="speakTo">Speak to...</button>
       <button data-section="anagrams">Anagrams</button>
       <button data-section="challenges">Challenges</button>
@@ -262,10 +262,7 @@
       <button data-section="emoteOutfit">Emote and Outfit</button>
     </div>
     <div id="content">
-      <div id="search" class="section">
-        <div class="search-bar-container">
-          <input type="text" id="search-bar" placeholder="Search (excludes Sliding Puzzles)">
-        </div>
+      <div id="searchResults" class="section">
         <div id="searchResultsList" class="data-table"></div>
       </div>
       <div id="speakTo" class="section">
