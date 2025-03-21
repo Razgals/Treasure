@@ -1,2 +1,3 @@
-# Treasure
-Ye Olde Guide to Buried Riches
+**Ye Olde Guide to Buried Riches...**
+
+Made by Akg (Kaitnieks)
