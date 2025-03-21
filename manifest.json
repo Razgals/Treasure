@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "Ye Olde Guide to Buried Riches",
+  "version": "1.0",
+  "description": "Ye Olde Guide to Buried Riches...",
+  "action": {
+    "default_popup": "index.html"
+  },
+  "side_panel": {
+    "default_path": "index.html"
+  },
+  "permissions": [
+    "sidePanel"
+  ],
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "Sliding Puzzles/puzzle1.png",
+        "Sliding Puzzles/puzzle2.png",
+        "Sliding Puzzles/puzzle3.png",
+        "Sliding Puzzles/puzzle4.jpeg",
+        "Maps/maps.jpg",
+        "parchment.jpg",
+        "medievalsharp.ttf",
+        "button.jpg",
+        "icon16.jpeg",
+        "icon48.jpeg",
+        "icon128.jpeg"
+      ],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ye Olde Guide to Buried Riches</title>
+  <style>
+    @font-face {
+      font-family: 'MedievalSharp';
+      src: url('medievalsharp.ttf') format('truetype');
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      font-family: 'MedievalSharp', serif;
+      background-image: url('parchment.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      box-sizing: border-box;
+      min-height: 100vh;
+    }
+
+    body {
+      min-width: 300px;
+    }
+
+    #header {
+      text-align: center;
+      padding: 10px;
+      background-color: #1C2526;
+      color: #8B4513;
+      font-size: 20px;
+      font-weight: bold;
+      outline: 2px solid #8B4513;
+      outline-offset: 2px;
+    }
+
+    #main-content {
+      display: flex;
+      flex-direction: row;
+      flex-grow: 1;
+      width: 100%;
+      height: calc(100% - 40px);
+      background: transparent;
+    }
+
+    #sidebar {
+      width: 110px;
+      min-width: 110px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      background-color: rgba(0, 0, 0, 0.5);
+      padding: 10px 5px;
+      flex-shrink: 0;
+    }
+
+    #sidebar button, #sidebar .search-section {
+      margin-bottom: 5px;
+      padding: 8px 10px;
+      width: 100%;
+      background-image: url('button.jpg');
+      background-size: cover;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-family: 'MedievalSharp', serif;
+      font-size: calc(12px + 0.2vw);
+      white-space: nowrap;
+      text-align: left;
+      box-sizing: border-box;
+    }
+
+    #sidebar .search-section {
+      cursor: default; /* Prevent pointer cursor since it's not a clickable button */
+      padding: 0; /* Remove padding to fit the input properly */
+    }
+
+    #search-bar {
+      width: 100%;
+      padding: 8px 10px;
+      font-family: 'MedievalSharp', serif;
+      font-size: calc(12px + 0.2vw);
+      background: transparent; /* Transparent to show button.jpg background */
+      border: none;
+      color: white;
+      box-sizing: border-box;
+    }
+
+    #search-bar::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    #content {
+      flex-grow: 1;
+      overflow-y: auto;
+      padding: 10px 10px 10px 5px;
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      width: 100%;
+      background: transparent;
+    }
+
+    .section {
+      display: none;
+      width: 100%;
+      text-align: center;
+      background: transparent;
+    }
+
+    .section.active {
+      display: block;
+    }
+
+    #maps img {
+      width: 80%;
+      max-width: 300px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+
+    #slidingPuzzles {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      background: transparent;
+    }
+
+    #slidingPuzzles.active {
+      display: flex;
+    }
+
+    #slidingPuzzles img {
+      width: 80%;
+      max-width: 200px;
+      height: auto;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .data-table {
+      width: 90%;
+      max-width: 400px;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      margin-left: 0;
+      margin-right: auto;
+      box-sizing: border-box;
+      background: transparent;
+    }
+
+    .data-table div {
+      border: 1px solid #8B4513;
+      padding: 8px;
+      background-color: rgba(255, 255, 255, 0.8);
+      overflow-x: auto;
+      white-space: normal;
+      word-break: break-word;
+      font-size: calc(12px + 0.2vw);
+    }
+
+    .data-table div.long-text {
+      font-size: calc(10px + 0.2vw);
+    }
+
+    .riddle-box {
+      margin-bottom: 10px;
+      width: 100%;
+      background: transparent;
+    }
+
+    .riddle-item {
+      cursor: pointer;
+      transition: background-color 0.3s;
+      background-color: rgba(255, 255, 255, 0.8);
+      border: 1px solid #8B4513;
+      padding: 8px;
+      white-space: normal;
+      word-break: break-word;
+      font-size: calc(12px + 0.2vw);
+    }
+
+    .riddle-item:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
+
+    .answer-item {
+      display: none;
+      background-color: rgba(245, 245, 220, 0.9);
+      border: 1px solid #8B4513;
+      padding: 8px;
+      margin-top: 5px;
+      white-space: normal;
+      word-break: break-word;
+      font-size: calc(12px + 0.2vw);
+    }
+
+    .answer-item .answer-label {
+      font-weight: normal;
+    }
+
+    .answer-item .answer-text {
+      font-weight: bold;
+    }
+
+    .emote-outfit-item .emote-label,
+    .emote-outfit-item .location-label,
+    .emote-outfit-item .acquire-label {
+      font-weight: bold;
+    }
+
+    .npc-name {
+      font-weight: bold;
+    }
+
+    .anagram-text {
+      font-weight: bold;
+    }
+
+    .challenge-answer {
+      font-weight: bold;
+    }
+
+    .search-result {
+      display: none;
+      width: 90%;
+      max-width: 400px;
+      border: 1px solid #8B4513;
+      padding: 8px;
+      background-color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 10px;
+      white-space: normal;
+      word-break: break-word;
+      font-size: calc(12px + 0.2vw);
+    }
+
+    .search-result.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="header">Ye Olde Guide to Buried Riches</div>
+  <div id="main-content">
+    <div id="sidebar">
+      <div class="search-section">
+        <input type="text" id="search-bar" placeholder="Search (excludes Sliding Puzzles)">
+      </div>
+      <button data-section="speakTo">Speak to...</button>
+      <button data-section="anagrams">Anagrams</button>
+      <button data-section="challenges">Challenges</button>
+      <button data-section="slidingPuzzles">Sliding Puzzles</button>
+      <button data-section="maps">Maps</button>
+      <button data-section="riddles">Riddles</button>
+      <button data-section="emoteOutfit">Emote and Outfit</button>
+    </div>
+    <div id="content">
+      <div id="searchResults" class="section">
+        <div id="searchResultsList" class="data-table"></div>
+      </div>
+      <div id="speakTo" class="section">
+        <div id="speakToList" class="data-table"></div>
+      </div>
+      <div id="anagrams" class="section">
+        <div id="anagramsList" class="data-table"></div>
+      </div>
+      <div id="challenges" class="section">
+        <div id="challengesList" class="data-table"></div>
+      </div>
+      <div id="slidingPuzzles" class="section">
+        <img src="Sliding Puzzles/puzzle1.png" alt="Puzzle 1">
+        <img src="Sliding Puzzles/puzzle2.png" alt="Puzzle 2">
+        <img src="Sliding Puzzles/puzzle3.png" alt="Puzzle 3">
+        <img src="Sliding Puzzles/puzzle4.jpeg" alt="Puzzle 4">
+      </div>
+      <div id="maps" class="section">
+        <img src="Maps/maps.jpg" alt="Maps">
+      </div>
+      <div id="riddles" class="section">
+        <div id="riddlesList" class="data-table"></div>
+      </div>
+      <div id="emoteOutfit" class="section">
+        <div id="emoteOutfitList" class="data-table"></div>
+      </div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
